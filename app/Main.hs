@@ -5,6 +5,15 @@ main = putStrLn (wrapHtml myhtml)
 
 -- End 06-25-24: Embedded Domain-Specific Languages
 
+newtype Html :: String -> Html
+newtype Html = Html String
+
+newtype Structure :: String -> Structure
+newtype Structure = Structure String
+
+getStructureString :: Structure -> String
+getStructureString (Structure str) = str
+
 
 wrapHtml :: [Char] -> [Char]
 wrapHtml content = "<html><body>" <> content <> "</body></html>"
@@ -36,5 +45,5 @@ h1_ = el "h1"
 
 
 el :: String -> String -> String
-el tag content = 
+el tag content =
     "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
